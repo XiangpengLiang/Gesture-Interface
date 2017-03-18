@@ -2,7 +2,7 @@
 #define ADCREADER
 
 #include <QThread>
-#include "bcm2835"
+#include "bcm2835.h"
 
 class ADCreader : public QThread
 {
