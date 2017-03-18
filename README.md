@@ -1,7 +1,22 @@
-QwtExample
-===========
+Using 5 Flex sensors, raspberry Pi and MCP3008(ADC) to realise gesture interface.
 
-A simple example program using Qt/Qwt widgets to be used as a base for students doing Raspberry Pi data acquisition.
+
+Libraries:
+bcm2835
+QT
+Qwt
+
+Make it work:
+
+
+make distclean
+qmake
+make
+sudo startx ./Gesture
+
+Base on Brend Porr's example of Qwt: https://github.com/berndporr/qwt-example
+
+
 
 Qt is a cross platform framework for developing graphical applications, for more information please visit the links below:
 * [Qt Homepage](http://qt-project.org/)
@@ -11,21 +26,3 @@ Qt is a cross platform framework for developing graphical applications, for more
 
 Qwt is a technical widget library based on Qt, please see:
 * [Qwt Hompage](http://qwt.sourceforge.net/)
-
-
-Making it work
---------------
-
-To clone the git repository:
-
-    git clone https://github.com/glasgow-bio/qwt-example
-
-To build:
-
-    cd qwt-example
-    qmake
-    make
-
-To run (assuming you are logged into the RPi over ssh and no X-server is running):
-
-    startx ./QwtExample
