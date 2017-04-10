@@ -29,11 +29,11 @@ Window::Window()
     finger4->setFillBrush( QBrush(Qt::red) );
     finger5->setFillBrush( QBrush(Qt::green) );
 
-    finger1->setRange(2, 3.5);
-    finger2->setRange(2, 3.5);
-    finger3->setRange(2, 3.5);
-    finger4->setRange(2, 3.5);
-    finger5->setRange(2, 3.5);
+    finger1->setRange(2.5, 3.3);
+    finger2->setRange(2.5, 3.5);
+    finger3->setRange(2.5, 3.5);
+    finger4->setRange(2.5, 3.5);
+    finger5->setRange(2.5, 3.5);
 
     //  finger1->setRange(2,200);
     finger1->show();
