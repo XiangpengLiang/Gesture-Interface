@@ -1,6 +1,7 @@
 #include "window.h"
 #include "adcreader.h"
 
+#include <QDebug>
 
 #include <cmath>  // for sine stuff
 
@@ -11,6 +12,7 @@
 
 Window::Window()
 {
+//    image1.load(":/hand2.png");
 
     knob = new QwtKnob;
     // set up the gain knob
@@ -29,53 +31,82 @@ Window::Window()
     finger4->setFillBrush( QBrush(Qt::red) );
     finger5->setFillBrush( QBrush(Qt::green) );
 
-    finger1->setRange(2.5, 3.3);
-    finger2->setRange(2.5, 3.5);
-    finger3->setRange(2.5, 3.5);
-    finger4->setRange(2.5, 3.5);
-    finger5->setRange(2.5, 3.5);
+    finger1->setRange(2.45, 3.2);
+    finger2->setRange(2.45, 3.2);
+    finger3->setRange(2.45, 3.2);
+    finger4->setRange(2.45, 3.2);
+    finger5->setRange(2.45, 3.2);
 
-    //  finger1->setRange(2,200);
+
     finger1->show();
     finger2->show();
     finger3->show();
     finger4->show();
     finger5->show();
 
-    finger1->setValue(50 );
 
-
-    quit= new QPushButton("quit", this);
-    quit->setGeometry(QRect(QPoint(100, 100), QSize(200, 50)));
+    quit= new QPushButton("Quit", this);
     connect(quit, SIGNAL (released()), this, SLOT (handleButton()));
 
+    Guessing= new QPushButton("Guessing", this);
+    connect(Guessing, SIGNAL (released()), this, SLOT (openGuessing()));
 
+    Open = new QPushButton("Open Fingers", this);
+    connect(Open, SIGNAL (released()), this, SLOT (OpenFingers()));
 
+    Close = new QPushButton("Close Fingers", this);
+    connect(Close, SIGNAL (released()), this, SLOT (CloseFingers()));
 
-    // set up the layout - knob above thermometer
+    label = new QLabel(this);
+    label->setText("Please open your fingers and click Open");
+
+    // set up the layout
     vLayout = new QVBoxLayout;
-//    vLayout->addWidget(knob);
-//    vLayout->addWidget(finger1);
-//    vLayout->addWidget(finger2);
-//    vLayout->addWidget(finger3);
-//    vLayout->addWidget(finger4);
-//    vLayout->addWidget(finger5);
-
-
-    // plot to the left of knob and thermometer
+    Buttons = new QVBoxLayout;
     hLayout1 = new QHBoxLayout;
+    DataDisplay = new QHBoxLayout;
     hLayout2 = new QHBoxLayout;
+
+
+    Calibration = new QGroupBox(tr("Calibration"));
+    CalibrationLayout = new QVBoxLayout;
+    CalibrationLayout->addWidget(Open,4);
+    CalibrationLayout->addWidget(Close,4);
+    CalibrationLayout->addWidget(label,1);
+    Calibration->setLayout(CalibrationLayout);
+
+    Buttons->addWidget(Calibration);
+    Buttons->addWidget(Guessing);
+    Buttons->addWidget(quit);
+
+
     hLayout1->addWidget(knob);
-    hLayout2->addWidget(finger1);
-    hLayout2->addWidget(finger2);
-    hLayout2->addWidget(finger3);
-    hLayout2->addWidget(finger4);
-    hLayout2->addWidget(finger5);
-    hLayout1->addWidget(quit);
+
+
+    DataDisplay->addWidget(finger1,1);
+    DataDisplay->addWidget(finger2,2);
+    DataDisplay->addWidget(finger3,3);
+    DataDisplay->addWidget(finger4,1);
+    DataDisplay->addWidget(finger5,2);
+
+
+    hLayout2->addLayout(DataDisplay,5);
+    hLayout2->addLayout(Buttons,1);
+
+//    hLayout2->setStretchFactor(DataDisplay,3);
+//    hLayout2->setStretchFactor(Buttons,1);
+    DataDisplay->setSpacing(100);
+    hLayout2->setSpacing(150);
+
+//    quit->resize(200,50);
+//    Guessing->resize(200,50);
+
     // hLayout->addWidget(plot);
+
 
     vLayout->addLayout(hLayout1);
     vLayout->addLayout(hLayout2);
+
 
     setLayout(vLayout);
 
@@ -83,44 +114,66 @@ Window::Window()
     adcreader = new ADCreader();
     adcreader->start();
 
+//    guessingWindow = new guessing;
 }
 
 
 
 void Window::timerEvent( QTimerEvent * )
 {
-//    double inVal =(5 * sin( M_PI * count/50.0 )+10)*10;
-//    ++count;
 
-    /*
-   memmove( yData, yData+1, (plotDataSize-1) * sizeof(double) );
-  yData[plotDataSize-1] = inVal;
-  curve->setSamples(xData, yData, plotDataSize);
-  plot->replot();
+    finger1->setValue(adcreader->FingerData[0]*3.3/1023);
+    finger2->setValue(adcreader->FingerData[1]*3.3/1023);
+    finger3->setValue(adcreader->FingerData[2]*3.3/1023);
+    finger4->setValue(adcreader->FingerData[3]*3.3/1023);
+    finger5->setValue(adcreader->FingerData[4]*3.3/1023);
 
-*/
-    // set the thermometer value
-    //  thermo->setValue(inVal);
-    //knob->setValue(inVal);
+    for (int i=0;i<5;i++){
+    Compare[i]= adcreader->FingerData[i]  >  FingerThreshold[i];
 
-    //  double xx;
-    //       xx = knob->value();
+//    printf("FingerData %u = %d  \n", i,adcreader->FingerData[i]);
+//    printf("FingerThreshold %u = %d  \n", i,FingerThreshold[i]);
+//    printf("Compare %u = %d  \n\n", i,Compare[i]);
 
-    finger1->setValue(adcreader->voltage1);
-    finger2->setValue(adcreader->voltage2);
-    finger3->setValue(adcreader->voltage3);
-    finger4->setValue(adcreader->voltage4);
-    finger5->setValue(adcreader->voltage5);
+    }
 
-    qDebug()<<knob->value();
 }
 
 void Window::handleButton(){
-//    app->exit(0);
-//    QApplication::setQuitOnLastWindowClosed(true);
-//    QCoreApplication::exit();
+
         exit(-1);
 }
+
+void Window::openGuessing(){
+//    this->Close();
+    guessing *guessingWindow = new guessing;
+    guessingWindow->showMaximized();
+    guessingWindow->show();
+    guessingWindow->startTimer(300);
+//    guessingWindow.exec();
+//    this->show();
+
+}
+
+
+void Window::OpenFingers(){
+    for (int i=0;i<5;i++){
+    OpenFingersData[i]=adcreader->FingerData[i];
+    }
+
+}
+
+void Window::CloseFingers(){
+    for (int i=0;i<5;i++){
+    FingerThreshold[i]=(adcreader->FingerData[i]+OpenFingersData[i])/2;
+    printf("CloseFingersData %u = %d  \n", i,adcreader->FingerData[i]);
+    printf("OpenFingersData %u = %d  \n", i,OpenFingersData[i]);
+    printf("FingerThreshold %u = %d  \n\n", i,FingerThreshold[i]);
+
+    }
+
+}
+
 
 
 Window::~Window() {
@@ -134,6 +187,14 @@ Window::~Window() {
 
 
 
+/*
+void Window::paintEvent(QPaintEvent *)
+{
+    //void QPainter::drawPixmap(int x, int y, int width, int height, const QPixmap &pixmap)
+    QPainter painter(this);
+    painter.drawPixmap(10,10,200,200,image1);
+}
+*/
 
 
 

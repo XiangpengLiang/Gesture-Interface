@@ -13,6 +13,11 @@ LIBS += -lbcm2835
 #LIBS += -L"/usr/qwt-6.1.3/lib"
 #LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/=qwt-6.1.3/lib
 
-HEADERS += window.h adcreader.h
+HEADERS += window.h adcreader.h guessing.h
 
-SOURCES += main.cpp window.cpp adcreader.cpp
+
+
+SOURCES += main.cpp window.cpp adcreader.cpp guessing.cpp
+
+RESOURCES += \
+    paint.qrc
