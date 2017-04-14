@@ -5,11 +5,11 @@
 
 guessing::guessing()
 {
-    paper.load(":/paper.png");
-    scissor.load(":/scissor.png");
-    rock.load(":/rock.png");
-    dog.load(":/dog.png");
-    boom.load(":/boom.png");
+    paper.load(":/image/paper.png");
+    scissor.load(":/image/scissor.png");
+    rock.load(":/image/rock.png");
+    dog.load(":/image/dog.png");
+    boom.load(":/image/boom.png");
 
     Quit= new QPushButton("Quit", this);
     connect(Quit, SIGNAL (released()), this, SLOT (handleButton()));
