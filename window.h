@@ -30,7 +30,7 @@ class Window : public QWidget
     Q_OBJECT
 
 public:
-    Window(); // default constructor - called when a Window is declared without arguments
+    Window();
 
     ~Window();
 
@@ -42,10 +42,10 @@ public:
 
 private slots:
 
-void handleButton();
-void openGuessing();
-void OpenFingers();
-void CloseFingers();
+    void handleButton();
+    void openGuessing();
+    void OpenFingers();
+    void CloseFingers();
 
 private: 
 
@@ -55,27 +55,27 @@ private:
 
 
     int count;
-    // layout elements from Qt itself http://qt-project.org/doc/qt-4.8/classes.html
-    QVBoxLayout  *vLayout, *Buttons,*CalibrationLayout;  // vertical layout
-    QHBoxLayout  *hLayout1,*DataDisplay,*hLayout2;  // horizontal layout
+    QVBoxLayout  *vLayout, *Buttons,*CalibrationLayout, *titleLayout;  // vertical layout
+    QHBoxLayout  *hLayout2;  // horizontal layout
+    QGridLayout  *DataDisplay;
 
     QGroupBox *Calibration;
-//    QGridLayout  *hLayout2;
+
     double gain;
 
     ADCreader *adcreader;
 
     QPixmap image1;
 
-    QLabel *label ;
+    QLabel *label,*Title, *Uniname, *author;
+    QLabel *Thumb,*Forefinger, *Middlefinger, *Ringfinger, *Littlefinger;
 
     uint16_t OpenFingersData[5];
-//    uint16_t CloseFingersData[5];
+    //    uint16_t CloseFingersData[5];
 
-//    guessing *guessingWindow;
 
 protected:
-//        void paintEvent(QPaintEvent *);
+    //        void paintEvent(QPaintEvent *);
 };
 
 #endif // WINDOW_H

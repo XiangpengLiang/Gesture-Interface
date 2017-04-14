@@ -21,24 +21,24 @@ public:
 
     guessing();
 
-   ~guessing();
+    ~guessing();
 
     void timerEvent( QTimerEvent * );
 
 private slots:
 
-void handleButton();
+    void handleButton();
 
 private:
 
- //   Window *CtrlWindow;
+    //   Window *CtrlWindow;
     QPixmap paper, scissor, rock, boom,dog;
     QPushButton *Quit;
 
-//    QPainter painter(this);
-//    ADCreader *adcreader2;
+    //    QPainter painter(this);
+    //    ADCreader *adcreader2;
 
-//    bool Compare[5];
+    //    bool Compare[5];
 
 
 protected:
