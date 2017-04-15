@@ -1,20 +1,20 @@
-Gesture Interface Glove
+Gesture Interface Glove<br>
 Realtime embedded programming: Raspberry PI Assignment
-Tutor: Bernd Porr
+=
+Tutor: Bernd Porr<br>
 Students: Xiangpeng Liang, Zhong Lu, Chenhan Ye
-============================================
-
+-
 Making it work
---------------
-Install: Git
-Library: Qwt,Qt 4.8
+-
+    Install: Git
+    Library: Qwt,Qt 4.8
 
 To clone the git repository:
-
+-
     git clone https://github.com/pppxp/Gesture-Interface.git
 
 To build:
-
+-
     cd Gesture-Interaface
     qmake
     make
