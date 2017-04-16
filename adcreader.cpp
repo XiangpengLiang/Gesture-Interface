@@ -23,7 +23,7 @@ void ADCreader::run()
             FingerData[i]=getVoltage(i);  //5 finger data are stored in FingerData[]
 
         }
-        //        bcm2835_delay(20);  //for measure sampling rate
+        bcm2835_delay(20);  //for measuring sampling rate
     }
     bcm2835_spi_end();
     bcm2835_close();
@@ -45,7 +45,7 @@ uint16_t ADCreader::getVoltage(uint8_t fingerIndex)
 
     bcm2835_spi_transfernb(send_data,read_data,3);
 
-     v= (read_data[1]<<8)|read_data[2];  //Calculate the 16 bits voltage data
+    v= (read_data[1]<<8)|read_data[2];  //Calculate the 16 bits voltage data
 
     //    printf("Sent to SPI: 0x%02X. Read back from SPI: 0x%02X.  0x%02X.  0x%02X \n", send_data[0], read_data[0],read_data[1],read_data[2]);
     //   printf("a= 0x%02X. b= 0x%02X.  c= 0x%02X. \n", a,b,c);
