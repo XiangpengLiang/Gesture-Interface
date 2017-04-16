@@ -12,7 +12,7 @@ Introduction
 
 Making it work
 -
-    Install: Git
+    Install: Git, xorg
     Library: Qwt,Qt 4.8
 
 To clone the git repository:
