@@ -8,7 +8,8 @@ Students: Xiangpeng Liang, Zhong Lu, Chenhan Ye
 Introduction
 -
    Attach the glove to the flex sensor, and drive the sensor to deform through the bending of the finger, displaying the physical input value on the screen. After calibration, simple gesture games can be realized by proofreading operation within the system. <br>
-   Sampling rate: 441Hz for five sensors and 2205Hz for one sensor
+   Sampling rate: 441Hz for five sensors and 2205Hz for one sensor<br>
+   Power coumption: 3.3W
 
 Making it work
 -
