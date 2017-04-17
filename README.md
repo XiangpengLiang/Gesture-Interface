@@ -10,7 +10,7 @@ Students: Xiangpeng Liang, Zhong Lu, Chenhan Ye
 
 Introduction
 -
-   This project aims to attach flex sensors to the glove, and drive the sensor to deform through the bending of the finger, displaying the physical input value on the screen. After calibration, simple gesture games can be realized by proofreading operation within the system. <br>
+   This project aims to attach flex sensors to the glove, and drive the sensor to deform through the bending of the finger, displaying the physical input value on the screen. After calibration, simple gesture games (Rock-Paper-Scissor) can be realized in the current system. Also, this system is suitable for exploitation for various gesture control applications.<br>
    Sampling rate: 441Hz for five sensors and 2205Hz for one sensor<br>
    Power coumption: 3.3W
  ![](http://a.hiphotos.baidu.com/image/pic/item/ac6eddc451da81cb99b299f85866d016092431aa.jpg)
