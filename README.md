@@ -1,5 +1,8 @@
 Gesture Interface Glove<br>
-Realtime embedded programming: Raspberry PI Assignment
+University of Glasgow<br>
+Real Time Embedded Programming: Raspberry PI Assignment
+=
+[Demonstration video](https://youtu.be/rbo2YH-eyuY)
 =
 Tutor: Bernd Porr<br>
 Students: Xiangpeng Liang, Zhong Lu, Chenhan Ye
@@ -7,14 +10,15 @@ Students: Xiangpeng Liang, Zhong Lu, Chenhan Ye
 
 Introduction
 -
-   Attach the glove to the flex sensor, and drive the sensor to deform through the bending of the finger, displaying the physical input value on the screen. After calibration, simple gesture games can be realized by proofreading operation within the system. <br>
+   This project aims to attach flex sensors to the glove, and drive the sensor to deform through the bending of the finger, displaying the physical input value on the screen. After calibration, simple gesture games can be realized by proofreading operation within the system. <br>
    Sampling rate: 441Hz for five sensors and 2205Hz for one sensor<br>
    Power coumption: 3.3W
-
+ ![](http://a.hiphotos.baidu.com/image/pic/item/ac6eddc451da81cb99b299f85866d016092431aa.jpg)
+ 
 Making it work
 -
     Install: Git, xorg
-    Library: Qwt,Qt 4.8
+    Library: bcm2835, Qwt, Qt 4.8
 
 To clone the git repository:
 -
