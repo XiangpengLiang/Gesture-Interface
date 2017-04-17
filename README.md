@@ -17,8 +17,10 @@ Introduction
  
 Making it work
 -
-    Install: Git, xorg
-    Library: bcm2835, Qwt, Qt 4.8
+Hardware: Raspberry Pi B+,PCB, 5 [flex sensors](http://www.robotshop.com/uk/22-10k-flexible-sensor.html?gclid=CjwKEAjwz9HHBRDbopLGh-afzB4SJABY52oFbqccsSkHznvQcYiAtR8d1_bVHjz4ba2aHKLVBFFj0RoCImXw_wcB) on a glove<br>
+System: 2017-03-02-raspbian-jessie-lite<br>
+Install: Git, xorg<br>
+Library: bcm2835, Qwt, Qt 4.8
 
 To clone the git repository:
 -
